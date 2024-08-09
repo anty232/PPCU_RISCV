@@ -9,6 +9,8 @@ delete_all_floorplan_objs
 # Menu: Floorplan -> Specify Floorplan...
 # Function: create_floorplan
 
+create_floorplan -core_size {1000 1000 100 100 100 100} -core_margins_by die
+
 
 # TODO: Generate template for IO placement:
 # Menu: File -> Save -> IO File... , check the boxes: sequence, Generate template IO File"
@@ -24,19 +26,23 @@ delete_all_floorplan_objs
 # Menu: File -> Load -> I/O File...
 # Function: read_io_file
 
+read_io_file mtm_riscv_chip.io
+
 
 # TODO: Add 12um placement halo around blocks to reserve the place for the power ring
 # Menu: Floorplan -> Edit Flooplan -> Edit Halo...
 # Function: create_place_halo
 
+create_place_halo -halo_deltas 12 12 12 12 -cell TS1N40LPB4096X32M4M
+
 
 # TODO: Set the desired location of the instruction RAM
-set myram0 [get_cells u_mtm_riscv_soc/u_peripherals_unit/u_memory_unit_u_instr_ram_u_ram/u_TS1N40LPB4096X32M4M]
-set_db $myram0 .location {0 0}
+set myram0 [get_cells u_soc/u_data_ram/u_ram/u_TS1N40LPB4096X32M4M]
+set_db $myram0 .location {625 595}
 
 # TODO: Set the desired location of the data RAM
-set myram1 [get_cells u_mtm_riscv_soc/u_peripherals_unit/u_memory_unit_u_data_ram/u_ram/u_TS1N40LPB4096X32M4M]
-set_db $myram1 .location {0 0}
+set myram1 [get_cells u_soc/u_code_ram_u_ram/u_TS1N40LPB4096X32M4M]
+set_db $myram1 .location {440 595}
 
 
 # TODO: Cut core rows to placement halo

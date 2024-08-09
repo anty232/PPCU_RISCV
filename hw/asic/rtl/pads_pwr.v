@@ -50,6 +50,7 @@ PVSS3DGZ VSS3_9_ ( .VSS() );
 PVSS3DGZ VSS3_10_ ( .VSS() );
 PVSS3DGZ VSS3_11_ ( .VSS() );
 PVSS3DGZ VSS3_12_ ( .VSS() );
+PVSS3DGZ VSS3_13_ ( .VSS() );
 
 endmodule
 
