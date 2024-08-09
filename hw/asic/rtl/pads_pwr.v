@@ -21,15 +21,35 @@ PVDD1DGZ VDD1_1_ ( .VDD() );
 PVDD1DGZ VDD1_0_ ( .VDD() );
     
 // io vdd    
-PVDD2DGZ VDD2_1_ ( .VDDPST() );
 PVDD2DGZ VDD2_0_ ( .VDDPST() );
+PVDD2DGZ VDD2_1_ ( .VDDPST() );
+PVDD2DGZ VDD2_2_ ( .VDDPST() );
+PVDD2DGZ VDD2_3_ ( .VDDPST() );
+PVDD2DGZ VDD2_4_ ( .VDDPST() );
+PVDD2DGZ VDD2_5_ ( .VDDPST() );
+PVDD2DGZ VDD2_6_ ( .VDDPST() );
+PVDD2DGZ VDD2_7_ ( .VDDPST() );
+PVDD2DGZ VDD2_8_ ( .VDDPST() );
+PVDD2DGZ VDD2_9_ ( .VDDPST() );
+PVDD2DGZ VDD2_10_ ( .VDDPST() );
     
 // io power on control (only one)
 PVDD2POC VDD2POC ( .VDDPST() );
     
 // common ground    
-PVSS3DGZ VSS3_1_ ( .VSS() );
 PVSS3DGZ VSS3_0_ ( .VSS() );
+PVSS3DGZ VSS3_1_ ( .VSS() );
+PVSS3DGZ VSS3_2_ ( .VSS() );
+PVSS3DGZ VSS3_3_ ( .VSS() );
+PVSS3DGZ VSS3_4_ ( .VSS() );
+PVSS3DGZ VSS3_5_ ( .VSS() );
+PVSS3DGZ VSS3_6_ ( .VSS() );
+PVSS3DGZ VSS3_7_ ( .VSS() );
+PVSS3DGZ VSS3_8_ ( .VSS() );
+PVSS3DGZ VSS3_9_ ( .VSS() );
+PVSS3DGZ VSS3_10_ ( .VSS() );
+PVSS3DGZ VSS3_11_ ( .VSS() );
+PVSS3DGZ VSS3_12_ ( .VSS() );
 
 endmodule
 
