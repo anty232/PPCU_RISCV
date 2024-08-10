@@ -16,7 +16,7 @@
     )
     (top
 	(inst  name="u_pads_in/u_btn_0_"	 place_status=placed offset = 190)
-	(inst  name="u_pads_in/u_btn_1_"	 place_status=placed space = 100)
+	(inst  name="u_pads_in/u_btn_1_"	 place_status=placed space = 70)
 	(inst  name="u_pads_in/u_btn_2_"	 place_status=placed )
 	(inst  name="u_pads_in/u_btn_3_"	 place_status=placed )
 	(inst  name="u_pads_in/u_clk"	     place_status=placed )
@@ -31,7 +31,7 @@
     )
     (left
 	(inst  name="u_pads_out/u_led_3_"	place_status=placed offset = 190)
-	(inst  name="u_pads_out/u_uart_sout"	place_status=placed space = 100)
+	(inst  name="u_pads_out/u_uart_sout"	place_status=placed space = 70)
 	(inst  name="u_pads_pwr/VDD1_0_"	 place_status=placed )
 	(inst  name="u_pads_pwr/VDD1_1_"	 place_status=placed )
 	(inst  name="u_pads_pwr/VDD2POC"	 place_status=placed )
@@ -46,7 +46,7 @@
     )
     (bottom
 	(inst  name="u_pads_pwr/VSS3_3_"	 place_status=placed offset = 190)
-	(inst  name="u_pads_pwr/VSS3_2_"	 place_status=placed space = 100)
+	(inst  name="u_pads_pwr/VSS3_2_"	 place_status=placed space = 70)
 	(inst  name="u_pads_pwr/VSS3_1_"	 place_status=placed )
 	(inst  name="u_pads_pwr/VSS3_0_"	 place_status=placed )
 	(inst  name="u_pads_pwr/VDD2_10_"	 place_status=placed )
@@ -61,8 +61,8 @@
     )
     (right
 	(inst  name="u_pads_pwr/VSS3_13_"	 place_status=placed offset = 190)
-	(inst  name="u_pads_pwr/VSS3_12_"	 place_status=placed space = 100)
-	(inst  name="u_pads_pwr/VSS3_11_"	 place_status=placed )
+	(inst  name="u_pads_pwr/VSS3_12_"	 place_status=placed space = 70)
+	(inst  name="u_pads_pwr/VSS3_11_"	 place_status=placed ) 
 	(inst  name="u_pads_pwr/VSS3_10_"	 place_status=placed )
 	(inst  name="u_pads_pwr/VSS3_9_"	 place_status=placed )
 	(inst  name="u_pads_pwr/VSS3_8_"	 place_status=placed )

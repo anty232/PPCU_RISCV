@@ -9,7 +9,7 @@ delete_all_floorplan_objs
 # Menu: Floorplan -> Specify Floorplan...
 # Function: create_floorplan
 
-create_floorplan -core_size {1000 1000 100 100 100 100} -core_margins_by die
+create_floorplan -core_size {730 730 100 100 100 100} -core_margins_by die
 
 
 # TODO: Generate template for IO placement:
@@ -38,16 +38,16 @@ create_place_halo -halo_deltas 12 12 12 12 -cell TS1N40LPB4096X32M4M
 
 # TODO: Set the desired location of the instruction RAM
 set myram0 [get_cells u_soc/u_data_ram/u_ram/u_TS1N40LPB4096X32M4M]
-set_db $myram0 .location {625 595}
+set_db $myram0 .location {490 310}
 
 # TODO: Set the desired location of the data RAM
 set myram1 [get_cells u_soc/u_code_ram_u_ram/u_TS1N40LPB4096X32M4M]
-set_db $myram1 .location {440 595}
+set_db $myram1 .location {305 310}
 
 
 # TODO: Cut core rows to placement halo
 # Menu: makes problems. Run this command:
-split_row
+split_row 
 
 
 # Core rings
@@ -56,12 +56,26 @@ split_row
 # Menu: Power -> Power Planning -> Add Ring …
 # Functions: set_db, add_rings
 
+#set_db add_rings_orthogonal_only true
+#set_db add_rings_target pad_ring
+#set_db add_rings_target stripe
+set_db add_rings_extend_over_row true
+
+add_rings -center 1 -type core_rings -nets {VDD VDD VDD VDD VSS VSS VSS VSS} -layer {top M7 bottom M7 left M6 right M6} -spacing 2 -width 4.5 -use_wire_group 1
+
+add_rings -center 1 -type core_rings -nets {VDD VDD VDD VDD VSS VSS VSS VSS} -layer {top M7 bottom M7 left M8 right M8} -spacing 2 -width 4.5 -use_wire_group 1
+
+#add_rings -follow core -layer {top M7 bottom M7 left M6 right M6} -nets {VDD VSS VDD VSS VDD VSS VDD VSS} -center 1 -rectangle 1 -snap_wire_center_to_grid none \
+-spacing {top 1 bottom 1 left 1 right 1} -use_wire_group 1 -use_interleaving_wire_group 0  -width 4.5 
 
 # RAM rings
 # TODO: Create rings of 4.5um width around the RAM blocks. Extend the vertical
 # connections upwards and downwords to the core ring. Use M6 and M7
 # Menu: Power -> Power Planning -> Add Ring …
 # Functions: set_db, add_rings
+
+add_rings -center 1 -around each_block -type block_rings  -nets {VDD VSS} -layer {top M7 bottom M7 left M6 right M6} -spacing 1 -width 4.5 -use_wire_group 1 \
+-extend_corners {lt lb rb rt}
 
 
 # Add vertical stripes
@@ -72,6 +86,10 @@ split_row
 # Do not route the stripes over the blocks.
 # Menu: Power -> Power planning -> Add stripe...
 # Function: set_db, add_stripes
+
+set_db add_stripes_break_at block_ring
+
+add_stripes  -direction vertical -nets {VDD VSS} -width 3 -spacing 5 -layer M6 -start_offset 50 -set_to_set_distance 50
 
 
 # Add stripes horizontal
