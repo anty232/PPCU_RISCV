@@ -89,7 +89,7 @@ add_rings -center 1 -around each_block -type block_rings  -nets {VDD VSS} -layer
 
 set_db add_stripes_break_at block_ring
 
-add_stripes  -direction vertical -nets {VDD VSS} -width 3 -spacing 5 -layer M6 -start_offset 50 -set_to_set_distance 50
+add_stripes  -direction vertical -nets {VDD VSS} -width 3 -spacing 5 -layer M6 -start_offset 50 -set_to_set_distance 72
 
 
 # Add stripes horizontal
@@ -99,6 +99,7 @@ add_stripes  -direction vertical -nets {VDD VSS} -width 3 -spacing 5 -layer M6 -
 # Do not route the stripes over the blocks.
 # Function: set_db, add_stripes
 
+add_stripes  -direction horizontal -nets {VDD VSS} -width 3 -spacing 5 -layer M7 -start_offset 10 -set_to_set_distance 72
 
 # TODO: Connect pads to ring
 # Menu: Route -> Special route...
@@ -106,6 +107,10 @@ add_stripes  -direction vertical -nets {VDD VSS} -width 3 -spacing 5 -layer M6 -
 # Basic -> Allow Layer Change = Off
 # Advanced -> Pad Pins -> Number of connections to Multiple Geometries = All
 # Function: route_special
+set_db route_special_via_connect_to_shape noshape
+set_db route_special_core_pin_ignore_obs block_halo
+
+route_special  -connect {pad_pin} -allow_layer_change 0 -pad_pin_port_connect {all_port all_geom} -pad_ring_layer M3
 
 
 # TODO: Connect RAM block powers
@@ -115,6 +120,7 @@ add_stripes  -direction vertical -nets {VDD VSS} -width 3 -spacing 5 -layer M6 -
 # Advanced -> Block Pins -> Pin selection = All Pins
 # Function: route_special
 
+route_special  -connect {block_pin} -allow_layer_change 0 -block_pin all -pad_ring_layer M3
 
 # TODO: Connect standard cell power
 # Menu: Route -> Special route...
@@ -122,6 +128,11 @@ add_stripes  -direction vertical -nets {VDD VSS} -width 3 -spacing 5 -layer M6 -
 # Basic -> Allow Layer Change = Off
 # Via Generation -> Make Via Connection to: = Core Ring, Stripe
 # Functions: set_db, route_special
+
+#set_db route_special_via_connect_to_shape {stripe ring}
+
+
+route_special -core_pin_target {ring stripe} -allow_layer_change 0
 
 # save database
 write_db $saveDir/${DESIGN}_03_floorplan.db
