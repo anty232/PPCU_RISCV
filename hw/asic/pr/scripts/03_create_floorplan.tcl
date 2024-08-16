@@ -74,7 +74,7 @@ add_rings -center 1 -type core_rings -nets {VDD VDD VDD VDD VSS VSS VSS VSS} -la
 # Menu: Power -> Power Planning -> Add Ring …
 # Functions: set_db, add_rings
 
-add_rings -center 1 -around each_block -type block_rings  -nets {VDD VSS} -layer {top M7 bottom M7 left M6 right M6} -spacing 1 -width 4.5 -use_wire_group 1 \
+add_rings -center 1 -around each_block -type block_rings  -nets {VSS VDD} -layer {top M7 bottom M7 left M6 right M6} -spacing 1 -width 4.5 -use_wire_group 1 \
 -extend_corners {lt lb rb rt}
 
 
@@ -107,6 +107,7 @@ add_stripes  -direction horizontal -nets {VDD VSS} -width 3 -spacing 5 -layer M7
 # Basic -> Allow Layer Change = Off
 # Advanced -> Pad Pins -> Number of connections to Multiple Geometries = All
 # Function: route_special
+
 set_db route_special_via_connect_to_shape noshape
 set_db route_special_core_pin_ignore_obs block_halo
 
@@ -132,7 +133,7 @@ route_special  -connect {block_pin} -allow_layer_change 0 -block_pin all -pad_ri
 #set_db route_special_via_connect_to_shape {stripe ring}
 
 
-route_special -core_pin_target {ring stripe} -allow_layer_change 0
+route_special -connect {core_pin} -core_pin_target {first_after_row_end} -allow_layer_change 0 -nets {VDD VSS}
 
 # save database
 write_db $saveDir/${DESIGN}_03_floorplan.db
